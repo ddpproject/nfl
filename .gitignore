@@ -1,0 +1,5 @@
+*.swp
+*.un~
+Thumbs.db
+.DS_Store
+.pyc
