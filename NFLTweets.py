@@ -3,7 +3,9 @@ import os
 import sys
 
 def main(dir):
-    tweetsfile = open("player_tweets.json", "w")
+        if not os.path.exists("./data"):
+        os.makedirs("./data")
+    tweetsfile = open("./data/player_tweets.json", "w")
     os.chdir(dir)
     for playerfile in os.listdir("."):
         if playerfile.startswith("indexcfmCatID0AthleteID"):
@@ -15,4 +17,4 @@ if __name__ == '__main__':
     if dir:
         main(dir)
     else:
-        print "Usage: python NFLTweets.py ./Crawls/medium crawl Adam Snyder tweets"
+        print "Usage: python NFLTweets.py ./Crawls/Complete Tweet Crawl"

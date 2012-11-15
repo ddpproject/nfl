@@ -3,7 +3,9 @@ import os
 import sys
 
 def main(dir):
-    statsfile = open("player_stats.json", "w")
+    if not os.path.exists("./data"):
+        os.makedirs("./data")
+    statsfile = open("./data/player_stats.json", "w")
     os.chdir(dir)
     for playerfile in os.listdir("."):
         if playerfile.endswith("careerstats.html"):
