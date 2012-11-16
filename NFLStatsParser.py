@@ -8,9 +8,13 @@ def parse_stats_page(filename):
 
     player = {}
     player["Name"] = soup.find("span",class_="player-name").string.encode("ascii","ignore")
-    number = re.split('[^\w#]+' ,soup.find("span",class_="player-number").string.encode("ascii","ignore"))
-    player["Number"] = number[0][1:]
-    player["Position"] = number[1]
+    num = re.split('[^\w#]+' ,soup.find("span",class_="player-number").string.encode("ascii","ignore"))
+    if num[0][1:] == '':
+        number = 0
+    else:
+        number = int(num[0][1:])
+    player["Number"] = number
+    player["Position"] = num[1]
     player["Team:"] = soup.find("p", class_="player-team-links").a.string.encode("ascii","ignore")
     stats_soup = soup.find("div",id="player-stats-wrapper")
     
@@ -39,7 +43,20 @@ def parse_stats_page(filename):
                 elif key == "Team":
                     player[Pos][key] = stat.a.string.encode("ascii","ignore")
                 else:
-                    player[Pos][key] = stat.string.encode("ascii","ignore")
+                    value = stat.string.encode("ascii","ignore")
+                    if value == "--":
+                        value = 0
+                    try:
+                        value = int(value)
+                    except ValueError, e:
+                        try:
+                            value = float(value)
+                        except ValueError, e:
+                            pass
+                    player[Pos][key] = value
+
+
+
         if player[Pos] == {}:
             return None
     return player
