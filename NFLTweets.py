@@ -1,15 +1,30 @@
 from NFLTweetsParser import parse_tweets_page, write_tweets_to_file
 import os
 import sys
+import ujson
 
 def main(dir):
-        if not os.path.exists("./data"):
+    if not os.path.exists("./data"):
         os.makedirs("./data")
     tweetsfile = open("./data/player_tweets.json", "w")
+
+    curplayers = set()
+    try:
+        with open("./data/player_stats.json", "r") as statsfile:
+            for line in statsfile:
+                player = ujson.loads(line)
+                curplayers.add(player["Name"])
+        curfile = open("./data/cur_player_tweets.json", "w")
+    except IOError:
+        pass
+    
     os.chdir(dir)
     for playerfile in os.listdir("."):
         if playerfile.startswith("indexcfmCatID0AthleteID"):
-            write_tweets_to_file(parse_tweets_page(playerfile), tweetsfile)
+            tweets = parse_tweets_page(playerfile)
+            write_tweets_to_file(tweets, tweetsfile)
+            if tweets[0]["Name"] in curplayers:
+                write_tweets_to_file(tweets, curfile)
     tweetsfile.close()
 
 if __name__ == '__main__':
