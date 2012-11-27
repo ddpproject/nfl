@@ -5,3 +5,4 @@ Thumbs.db
 *.pyc
 
 /Crawls
+/data
