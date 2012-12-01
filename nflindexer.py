@@ -10,7 +10,7 @@ from collections import defaultdict
 from settings import settings
 
 def main():
-    db = utils.connect_db('nfl', remove_existing=False)
+    db = utils.connect_db('nfl', remove_existing=True)
     stats = utils.read_json()
     
     #player stat collection
@@ -19,6 +19,7 @@ def main():
     count = 0
     for stat in stats:
         stat['id']=count
+	count = count + 1
         print 'Inserting player:', stat['Name']
         player_collection.insert(stat)
     
