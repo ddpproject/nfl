@@ -8,6 +8,7 @@ def sortQBs():
     
     rankedQB = db['QB']
     rankedQB.drop()
+    rankedQB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'QB'} ):
         if "Passing" in each:
@@ -41,6 +42,7 @@ def sortRBs():
     
     rankedRB = db['RB']
     rankedRB.drop()
+    rankedRB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'RB'} ):
         if "Rushing" in each:
@@ -86,6 +88,7 @@ def sortTEs():
     
     rankedTE = db['TE']
     rankedTE.drop()
+    rankedTE.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'TE'} ):
         if "Receiving" in each:
@@ -110,6 +113,7 @@ def sortWRs():
     
     rankedWR = db['WR']
     rankedWR.drop()
+    rankedWR.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'WR'} ):
         if "Receiving" in each:
@@ -149,6 +153,7 @@ def sortDBs():
     
     rankedDB = db['DB']
     rankedDB.drop()
+    rankedDB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'FS'} , {"Position" : 'SS'} , {"Position" : 'CB'} , {"Position" : 'DB'} , {"Position" : 'SAF'} ] } ):
         if "Defensive" in each:
@@ -167,7 +172,7 @@ def sortDBs():
             FumbleTD = int(each['Fumbles']['TD'])
             fumbleTotal = (ForcedFumble * 500) + (FumbleTD * 200)
         else:
-            defenseTotal = 0
+            fumbleTotal = 0
         if "Kick Return" in each:
             kreturnTD = int(each['Kick Return']['TD'])
             kreturnYds = int(str(each['Kick Return']['Yds']).replace(",", ""))
@@ -197,6 +202,7 @@ def sortLBs():
     
     rankedLB = db['LB']
     rankedLB.drop()
+    rankedLB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'LB'} , {"Position" : 'OLB'} , {"Position" : 'MLB'} , {"Position" : 'ILB'}]}):
         if "Defensive" in each:
@@ -230,6 +236,7 @@ def sortDLs():
     
     rankedDL = db['DL']
     rankedDL.drop()
+    rankedDL.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'NT'} , {"Position" : 'DT'} , {"Position" : 'DE'}]}):
         if "Defensive" in each:

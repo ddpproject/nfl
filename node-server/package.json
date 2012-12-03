@@ -1,0 +1,20 @@
+{
+	"name": "node-nflhappiness-server",
+	"version": "0.0.1",
+	"author": "Philip Van Ruitenbeek <philipvr@gmail.com>",
+	"contributors": [
+		{
+			"name": "Philip Van Ruitenbeek",
+			"email": "philipvr@gmail.com"
+		}
+	],
+	"dependencies": {
+		"mongoq": "https://github.com/zzdhidden/mongoq/tarball/master",
+		"express": "3.x",
+		"jade": "0.27.x"
+	},
+	"license": "CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/)",
+	"engines": {
+		"node": ">=0.8"
+	}
+}
