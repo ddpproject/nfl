@@ -15,7 +15,7 @@ def parse_stats_page(filename):
         number = int(num[0][1:])
     player["Number"] = number
     player["Position"] = num[1]
-    player["Team:"] = soup.find("p", class_="player-team-links").a.string.encode("ascii","ignore")
+    player["Team"] = soup.find("p", class_="player-team-links").a.string.encode("ascii","ignore")
     stats_soup = soup.find("div",id="player-stats-wrapper")
     
     if len(stats_soup.find_all("table")) == 0:

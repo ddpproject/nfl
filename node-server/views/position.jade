@@ -3,9 +3,77 @@ html
   head
     meta(charset="utf-8")
     title= "NLF Happiness vs. Performance"
+    style
+      #links {
+        position: fixed;
+        top: 80px;
+        font-size: 90%;
+        padding: 10px 15px 15px 15px;
+        width: 175px;
+      }
+      #links ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      #links li {
+        padding: 3px 0px;
+      }
+      #content {
+        float: right;
+        position: absolute;
+        margin-top: 0px;
+        margin-right: 20px;
+        margin-left: 150px;
+        width: 80%;
+      }
+      h2, h3 {
+        margin: 0px;
+        padding: 0px;
+      }
+      th, td {
+        padding: 5px;
+      }
   body
-    each player in results
-      - text = JSON.stringify(player);
-      code= text
-      br
-      br
+
+    div#links
+      h3= "Positions"
+      ul
+        li
+          a(href="/position/qb")= "Quarterbacks"
+        li
+          a(href="/position/wr")= "Wide Recievers"
+        li
+          a(href="/position/dl")= "Defensive Line"
+        li
+          a(href="/position/rb")= "Running Backs"
+        li
+          a(href="/position/te")= "Tight Ends"
+        li
+          a(href="/position/lb")= "Linebackers"
+        li
+          a(href="/position/db")= "Defensive Backs"
+    div#content
+      div#header
+        h1= "NLF Players' Happiness vs. Performance"
+      table(border=1)
+        tr
+          th= "Rank"
+          th= "Name"
+          th= "Team"
+          th= "Position"
+          th= "# Positive Tweets"
+          th= "# Negative Tweets"
+          th= "% of Tweets Positive"
+        - var rank = 1
+        each player in results
+          tr
+            td= rank++
+            td
+              a(href="/player/"+player.id)= player.Name
+            td= player.Team || "Free agent"
+            td= player.Position
+            td= player.num_pos || 0
+            td= player.num_neg || 0
+            td= Math.round(player.num_pos/(player.num_pos+player.num_neg)*100) || 0
+            //td= JSON.stringify(player);
