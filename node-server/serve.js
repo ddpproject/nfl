@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/position/:position', function(req, res) {
-  db.collection(req.params.position.toUpperCase()).find({}, {"Name":1,"Position":1,"Team":1,"num_pos":1,"Score":1,"id":1}).sort({'Score': -1}).toArray(function(err, results) {
+  db.collection(req.params.position.toUpperCase()).find().sort({'Score': -1}).toArray(function(err, results) {
     if (err) {
       res.redirect('/404');
     } else {
@@ -49,4 +49,4 @@ app.get('/player/:player', function(req, res) {
 });
 
 
-app.listen(8080);
+app.listen(8000);

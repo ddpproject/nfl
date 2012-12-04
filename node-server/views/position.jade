@@ -65,6 +65,7 @@ html
           th= "# Positive Tweets"
           th= "# Negative Tweets"
           th= "% of Tweets Positive"
+          th= "% of Tweets Negative"
         - var rank = 1
         each player in results
           tr
@@ -76,4 +77,5 @@ html
             td= player.num_pos || 0
             td= player.num_neg || 0
             td= Math.round(player.num_pos/(player.num_pos+player.num_neg)*100) || 0
+            td= Math.round(player.num_neg/(player.num_pos+player.num_neg)*100) || 0
             //td= JSON.stringify(player);
