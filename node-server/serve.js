@@ -20,12 +20,42 @@ app.get('/', function(req, res) {
   res.redirect('/position/qb'); // TODO: add a landing page
 });
 
+app.get('/negative', function(req, res) {
+  db.collection('players').find().sort({'num_neg': -1}).limit(50).toArray(function(err, results) {
+    if (err) {
+      res.redirect('/404');
+    } else {
+      res.render('team.jade', {results: results});
+    }
+  });
+});
+
+app.get('/positive', function(req, res) {
+  db.collection('players').find().sort({'num_pos': -1}).limit(50).toArray(function(err, results) {
+    if (err) {
+      res.redirect('/404');
+    } else {
+      res.render('team.jade', {results: results});
+    }
+  });
+});
+
 app.get('/position/:position', function(req, res) {
   db.collection(req.params.position.toUpperCase()).find().sort({'Score': -1}).toArray(function(err, results) {
     if (err) {
       res.redirect('/404');
     } else {
       res.render('position.jade', {results: results});
+    }
+  });
+});
+
+app.get('/team/:team', function(req, res) {
+  db.collection('players').find({'Team': req.params.team.replace(/_/g,' ')}).sort({'Name':1}).toArray(function(err, results) {
+    if (err) {
+      res.redirect('/404');
+    } else {
+      res.render('team.jade', {results: results});
     }
   });
 });

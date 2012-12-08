@@ -2,7 +2,7 @@ doctype 5
 html
   head
     meta(charset="utf-8")
-    title= "NLF Happiness vs. Performance"
+    title= "NFL Happiness vs. Performance"
     style
       #links {
         position: fixed;
@@ -37,7 +37,14 @@ html
   body
 
     div#links
-      h3= "Positions"
+      h2= "Top 10"
+      ul
+        li
+          a(href="/positive")= "Most Positive Players"
+        li
+          a(href="/negative")= "Most Negative Players"
+        br
+      h2= "Positions"
       ul
         li
           a(href="/position/qb")= "Quarterbacks"
@@ -53,9 +60,100 @@ html
           a(href="/position/lb")= "Linebackers"
         li
           a(href="/position/db")= "Defensive Backs"
+        br
+      h2= "Teams"
+      br
+      h3= "AFC East"
+      ul
+        li
+          a(href="/team/Buffalo_Bills")= "Buffalo Bills"
+        li
+          a(href="/team/Miami_Dolphins")= "Miami Dolphins"
+        li
+          a(href="/team/New_England_Patriots")= "New England Patriots"
+        li
+          a(href="/team/New_York_Jets")= "New York Jets"
+      br
+      h3= "AFC North"
+      ul
+        li
+          a(href="/team/Baltimore_Ravens")= "Baltimore Ravens"
+        li
+          a(href="/team/Cincinnati_Bengals")= "Cincinnati Bengals"
+        li
+          a(href="/team/Cleveland_Browns")= "Cleveland Browns"
+        li
+          a(href="/team/Pittsburgh_Steelers")= "Pittsburgh Steelers"
+      br
+      h3= "AFC South"
+      ul
+        li
+          a(href="/team/Houston_Texans")= "Houston Texans"
+        li
+          a(href="/team/Indianapolis_Colts")= "Indianapolis Colts"
+        li
+          a(href="/team/Jacksonville_Jaguars")= "Jacksonville Jaguars"
+        li
+          a(href="/team/Tennessee_Titans")= "Tennessee Titans"
+      br
+      h3= "AFC West"
+      ul
+        li
+          a(href="/team/Denver_Broncos")= "Denver Broncos"
+        li
+          a(href="/team/Kansas_City_Chiefs")= "Kansas City Chiefs"
+        li
+          a(href="/team/Oakland_Raiders")= "Oakland Raiders"
+        li
+          a(href="/team/San_Diego_Chargers")= "San Diego Chargers"
+      br
+      h3= "NFC East"
+      ul
+        li
+          a(href="/team/Dallas_Cowboys")= "Dallas Cowboys"
+        li
+          a(href="/team/New_York_Giants")= "New York Giants"
+        li
+          a(href="/team/Philadelphia_Eagles")= "Philadelphia Eagles"
+        li
+          a(href="/team/Washington_Redskins")= "Washington Redskins"
+      br
+      h3= "NFC North"
+      ul
+        li
+          a(href="/team/Chicago_Bears")= "Chicago Bears"
+        li
+          a(href="/team/Detroit_Lions")= "Detroit Lions"
+        li
+          a(href="/team/Green_Bay_Packers")= "Green Bay Packers"
+        li
+          a(href="/team/Minnesota_Vikings")= "Minnesota Vikings"
+      br
+      h3= "NFC South"
+      ul
+        li
+          a(href="/team/Atlanta_Falcons")= "Atlanta Falcons"
+        li
+          a(href="/team/Carolina_Panthers")= "Carolina Panthers"
+        li
+          a(href="/team/New_Orleans_Saints")= "New Orleans Saints"
+        li
+          a(href="/team/Tampa_Bay_Buccaneers")= "Tampa Bay Buccaneers"
+      br
+      h3= "AFC West"
+      ul
+        li
+          a(href="/team/Arizona_Cardinals")= "Arizona Cardinals"
+        li
+          a(href="/team/St._Louis_Rams")= "St. Louis Rams"
+        li
+          a(href="/team/San_Francisco_49ers")= "San Francisco 49ers"
+        li
+          a(href="/team/Seattle_Seahawks")= "Seattle Seahawks"
+      br
     div#content
       div#header
-        h1= "NLF Players' Happiness vs. Performance"
+        h1= "NFL Players' Happiness vs. Performance"
       table(border=1)
         tr
           th= "Rank"
