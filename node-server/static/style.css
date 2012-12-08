@@ -1,13 +1,47 @@
+html {
+  height: 100%;
+}
+
 body {
-  font-size: 90%;
+  font-size: 100%;
   font-family: calibri,tahoma,arial,sans-serif;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   /*margin: 0px 0px 20px 0px;*/
+}
+
+#radial-center {
+  /* fallback */
+  background-color: #2F2727;
+  background-image: url(images/radial_bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  
+  /* Safari 4-5, Chrome 1-9 */
+  /* Can't specify a percentage size? Laaaaaame. */
+  background: -webkit-gradient(linear, 0% 0% , 0% 100%, from(#002463), to(#5B7BBC));
+  background-attachment: fixed;
+  
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #002463, #5B7BBC);
+  background-attachment: fixed;
+  
+  /* Firefox 3.6+ */ 
+  background: -moz-linear-gradient(top, #002463, #5B7BBC);
+  background-attachment: fixed;
+  
+  /* IE 10 */ 
+  background: -ms-linear-gradient(top, #002463, #5B7BBC);
+  background-attachment: fixed;
+  
+  /* Opera cannot do radial gradients yet */
 }
 
 #links {
   position: absolute;
   top: 80px;
-  font-size: 90%;
+  font-size: 100%;
   padding: 10px 15px 15px 15px;
   width: 200px;
 }
@@ -19,12 +53,20 @@ body {
 #links li {
   padding: 3px 0px;
 }
+a:link{
+  color:#2CAE9C;
+}
+
+a:visited {
+  color:#D3D3D3
+}
+
 #content {
   float: right;
   position: absolute;
   margin-top: 0px;
   margin-right: 20px;
-  margin-left: 150px;
+  margin-left: 200px;
   width: 83%;
 }
 h1 {
@@ -35,10 +77,14 @@ h2, h3 {
   padding: 0px;
 }
 
+p {
+  font-size: 125%;
+}
+
 /* tables */
 table.tablesorter {
   /*font-family:arial;*/
-  background-color: #CDCDCD;
+  /*background-color: #CDCDCD;*/
   margin:10px 0pt 15px;
   /*font-size: 8pt;*/
   width: 100%;
@@ -46,13 +92,13 @@ table.tablesorter {
   border: 1px solid #FFF;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-  background-color: #e6EEEE;
+  /*background-color: #e6EEEE;*/
   border: 1px solid #FFF;
   /*font-size: 8pt;*/
   padding: 4px;
 }
 table.tablesorter thead tr .header :after {
-  content: url(/static/bg.gif);
+  content: url(/static/updown.gif);
   /*background-repeat: no-repeat;*/
   /*position: center right;*/
   cursor: pointer;
@@ -64,14 +110,14 @@ table.tablesorter tbody td {
   vertical-align: top;
 }
 table.tablesorter tbody tr.odd td {
-  background-color:#F0F0F6;
+  /*background-color:#F0F0F6;*/
 }
 table.tablesorter thead tr .headerSortUp :after{
-  content: url(/static/asc.gif);
+  content: url(/static/up.jpg);
 }
 table.tablesorter thead tr .headerSortDown :after{
-  content: url(/static/desc.gif);
+  content: url(/static/down.jpg);
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-  background-color: #8dbdd8;
+  /*background-color: #8dbdd8;*/
 }

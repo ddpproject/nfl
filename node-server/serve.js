@@ -17,11 +17,15 @@ var mongo = require('mongoq');
   db = mongo(app.get('db uri'), {safe:false});
 
 app.get('/', function(req, res) {
-  res.redirect('/position/qb'); // TODO: add a landing page
+  res.redirect('/about'); // TODO: add a landing page
+});
+
+app.get('/about', function(req, res) {
+  res.render('about.jade');
 });
 
 app.get('/negative', function(req, res) {
-  db.collection('players').find().sort({'num_neg': -1}).limit(50).toArray(function(err, results) {
+  db.collection('players').find({num_neg:{$gt:0}}).sort({'num_neg': -1}).toArray(function(err, results) {
     if (err) {
       res.redirect('/404');
     } else {
@@ -31,7 +35,7 @@ app.get('/negative', function(req, res) {
 });
 
 app.get('/positive', function(req, res) {
-  db.collection('players').find().sort({'num_pos': -1}).limit(50).toArray(function(err, results) {
+  db.collection('players').find({num_pos:{$gt:0}}).sort({'num_pos': -1}).toArray(function(err, results) {
     if (err) {
       res.redirect('/404');
     } else {
