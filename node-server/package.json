@@ -8,6 +8,10 @@
 			"email": "philipvr@gmail.com"
 		}
 	],
+	"scripts": {
+		"start": "node serve.js"
+	},
+	"main": "serve.js",
 	"dependencies": {
 		"mongoq": "https://github.com/zzdhidden/mongoq/tarball/master",
 		"express": "3.x",
