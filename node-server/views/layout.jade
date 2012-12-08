@@ -7,42 +7,10 @@ html
     script(type='text/javascript', src='/static/jquery.tablesorter.min.js')
     script(type='text/javascript')
       $(document).ready(function() {
-        $("table").tablesorter();
+        $("table.tablesorter").tablesorter();
       });
-    style
-      #links {
-        position: absolute;
-        top: 80px;
-        font-size: 90%;
-        padding: 10px 15px 15px 15px;
-        width: 200px;
-      }
-      #links ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-      }
-      #links li {
-        padding: 3px 0px;
-      }
-      #content {
-        float: right;
-        position: absolute;
-        margin-top: 0px;
-        margin-right: 20px;
-        margin-left: 150px;
-        width: 80%;
-      }
-      h1 {
-        padding: 0px 15px 0px 15px;
-      }
-      h2, h3 {
-        margin: 0px;
-        padding: 0px;
-      }
-      th, td {
-        padding: 5px;
-      }
+
+    link(rel="stylesheet", href="/static/style.css")
   body
     div#header
       h1= "NFL Players' Happiness vs. Performance"

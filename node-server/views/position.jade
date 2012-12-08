@@ -1,17 +1,25 @@
 extends layout
 
 block content
-  table(border=1)
+  table.tablesorter
     thead
       tr
         th= "Rank"
+          span.sort_img
         th= "Name"
+          span.sort_img
         th= "Team"
+          span.sort_img
         th= "Position"
+          span.sort_img
         th= "# Positive Tweets"
+          span.sort_img
         th= "# Negative Tweets"
+          span.sort_img
         th= "% of Tweets Positive"
+          span.sort_img
         th= "% of Tweets Negative"
+          span.sort_img
     - var rank = 1
     each player in results
       tr
