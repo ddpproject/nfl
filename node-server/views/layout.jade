@@ -10,7 +10,9 @@ html
 
   body#radial-center
     div#header
-      h1= "NFL Players' Happiness vs. Performance"
+      h1
+        //img(src="/static/nfl-logo.gif", alt="NFL Logo", width="40px", align="middle")
+        != " NFL Players' Happiness vs. Performance"
     div#links
       h2
         a(href="/about")= "About"
