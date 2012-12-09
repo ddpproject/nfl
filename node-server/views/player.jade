@@ -1,12 +1,16 @@
 extends layout
 
-mixin stats(header,stats)
+mixin stats(stats,header2,header1)
   table
+    if header1
+      tr
+        each span in header1
+          th(colspan=span.colspan)=span.name
     tr
-      each stat in header
+      each stat in header2
         th= stat
     tr
-      each stat in header
+      each stat in header2
         th= stats[stat]
 
 block content
@@ -15,12 +19,29 @@ block content
     a(href="/team/"+player.Team.replace(/ /g,"_"))= player.Team
 
   if player["Offensive Line"]
+    br
     h3= "Offensive Line"
-    mixin stats(["Year","Team","G","GS"], player["Offensive Line"])
+    - header2 = ["Year","Team","G","GS"]
+    mixin stats(player["Offensive Line"], header2)
 
   if player["Defensive"]
+    br
     h3= "Defensive"
-    mixin stats(["Year","Team","G","Total","Ast","Sck","SFTY","FDef","Int","TDs","Yds","Avg","Lng"], player["Defensive"])
+    - header2 = ["Year","Team","G","Total","Ast","Sck","SFTY","FDef","Int","TDs","Yds","Avg","Lng"]
+    - header1 = [{colspan: 3}, {colspan: 3, name: "Tackles"}, {colspan: 2}, {colspan: 6, name: "Interceptions"}]
+    mixin stats(player["Defensive"], header2, header1)
+
+  if player["Receiving"]
+    br
+    h3= "Receiving"
+    - header2 = ["Year","Team","G"]
+    mixin stats(player["Receiving"], header2)
+
+  if player["Rushing"]
+    br
+    h3= "Rushing"
+    - header2 = ["Year","Team","G"]
+    mixin stats(player["Rushing"], header2)
 
   if player.tweets
     br
