@@ -1,0 +1,35 @@
+extends layout
+
+mixin stats(header,stats)
+  table
+    tr
+      each stat in header
+        th= stat
+    tr
+      each stat in header
+        th= stats[stat]
+
+block content
+  h2= player.Name + " #" + player.Number + " " + player.Position
+  h3= "Team: " 
+    a(href="/team/"+player.Team.replace(/ /g,"_"))= player.Team
+
+  if player["Offensive Line"]
+    h3= "Offensive Line"
+    mixin stats(["Year","Team","G","GS"], player["Offensive Line"])
+
+  if player["Defensive"]
+    h3= "Defensive"
+    mixin stats(["Year","Team","G","Total","Ast","Sck","SFTY","FDef","Int","TDs","Yds","Avg","Lng"], player["Defensive"])
+
+  if player.tweets
+    br
+    h3= "Tweets"
+    ul
+      each tweet in player.tweets
+        li
+          if tweet.sentiment == "negative"
+            = "+ " + tweet.Tweet
+          else
+            = "- " + tweet.Tweet
+

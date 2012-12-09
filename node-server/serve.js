@@ -66,6 +66,7 @@ app.get('/team/:team', function(req, res) {
 
 app.get('/player/:player', function(req, res) {
   console.log("id: "+parseInt(req.params.player,10))
+  console.log('type: '+req.query.type);
   db.collection('players').findOne({id:parseInt(req.params.player,10)}, function(err, results) {
     if (err) {
       res.redirect('/404');
@@ -73,10 +74,18 @@ app.get('/player/:player', function(req, res) {
       if (results.num_pos > 0 || results.num_neg > 0) {
         db.collection('tweets').find({'Name':results['Name']}).toArray(function(err, tweets) {
           results['tweets'] = tweets;
-          res.json(results);
+          if (req.query.type == 'json') {
+            res.json(results);
+          } else {
+            res.render('player.jade', {player: results});
+          }
         });
       } else {
-        res.json(results);
+        if (req.query.type == 'json') {
+          res.json(results);
+        } else {
+          res.render('player.jade', {player: results});
+        }
       }
     }
   });
