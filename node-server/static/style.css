@@ -13,8 +13,8 @@ body {
 
 #radial-center {
   /* fallback */
-  background-color: #2F2727;
-  background-image: url(images/radial_bg.png);
+  background-color: #5B7BBC;
+  /*background-image: url(images/radial_bg.png);*/
   background-position: center center;
   background-repeat: no-repeat;
   
@@ -38,8 +38,10 @@ body {
   /* Opera cannot do radial gradients yet */
 }
 
-#links {
+div#links {
   position: absolute;
+  float: left;
+  /*display: inline-block;*/
   top: 80px;
   font-size: 100%;
   padding: 10px 15px 15px 15px;
@@ -58,16 +60,17 @@ a:link{
 }
 
 a:visited {
-  color:#D3D3D3
+  color:#B5B5B5
 }
 
-#content {
-  float: right;
+div#content {
   position: absolute;
+  float: right;
   margin-top: 0px;
   margin-right: 20px;
   margin-left: 200px;
-  width: 83%;
+  padding-right: 10px;
+  /*width: 80%;*/
 }
 h1 {
   padding: 0px 15px 0px 15px;

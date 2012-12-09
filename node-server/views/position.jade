@@ -1,5 +1,11 @@
 extends layout
 
+append head
+  script(type='text/javascript')
+    $(document).ready(function() {
+      $("table.tablesorter").tablesorter({sortList: [[0,0]]});
+    });
+
 block content
   table.tablesorter
     thead
@@ -26,7 +32,8 @@ block content
         td= rank++
         td
           a(href="/player/"+player.id)= player.Name
-        td= player.Team || "Free agent"
+        td
+          a(href="/team/"+player.Team.replace(/ /g,"_"))= player.Team
         td= player.Position
         td= player.num_pos || 0
         td= player.num_neg || 0

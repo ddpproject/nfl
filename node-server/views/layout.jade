@@ -1,16 +1,13 @@
 doctype 5
 html
   head
-    meta(charset="utf-8")
-    title= "NFL Happiness vs. Performance"
-    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js')
-    script(type='text/javascript', src='/static/jquery.tablesorter.min.js')
-    script(type='text/javascript')
-      $(document).ready(function() {
-        $("table.tablesorter").tablesorter();
-      });
+    block head
+      meta(charset="utf-8")
+      title= "NFL Happiness vs. Performance"
+      script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js')
+      script(type='text/javascript', src='/static/jquery.tablesorter.min.js')
+      link(rel="stylesheet", href="/static/style.css")
 
-    link(rel="stylesheet", href="/static/style.css")
   body#radial-center
     div#header
       h1= "NFL Players' Happiness vs. Performance"
