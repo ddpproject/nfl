@@ -94,19 +94,25 @@ p {
 
 /* tables */
 table.tablesorter {
-  /*font-family:arial;*/
-  /*background-color: #CDCDCD;*/
   margin:10px 0pt 15px;
-  /*font-size: 8pt;*/
-  width: 100%;
   text-align: left;
   border: 1px solid #FFF;
 }
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
-  /*background-color: #e6EEEE;*/
+table.stats {
+  margin:10px 0pt 15px;
+  text-align: left;
+  /*border: 1px solid #FFF;*/
+}
+table.tablesorter thead tr th, table.stats tbody tr th {
   border: 1px solid #FFF;
-  /*font-size: 8pt;*/
   padding: 4px;
+}
+table.stats thead {
+  text-align: center;
+  border: 0px;
+}
+table.stats tbody {
+  border: 1px solid #FFF;
 }
 table.tablesorter thead tr .header :after {
   content: url(/static/bg-w.gif);
@@ -114,19 +120,16 @@ table.tablesorter thead tr .header :after {
   /*position: center right;*/
   cursor: pointer;
 }
-table.tablesorter tbody td {
+table.tablesorter tbody td, table.stats tbody td {
   color: #3D3D3D;
   padding: 4px;
   background-color: #FFF;
   vertical-align: top;
 }
-table.tablesorter tbody tr.odd td {
-  /*background-color:#F0F0F6;*/
-}
-table.tablesorter thead tr .headerSortUp :after{
+table.tablesorter thead tr .headerSortUp :after {
   content: url(/static/asc-w.gif);
 }
-table.tablesorter thead tr .headerSortDown :after{
+table.tablesorter thead tr .headerSortDown :after {
   content: url(/static/desc-w.gif);
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
