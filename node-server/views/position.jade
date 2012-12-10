@@ -35,8 +35,10 @@ block content
         td
           a(href="/team/"+player.Team.replace(/ /g,"_"))= player.Team
         td= player.Position
-        td= player.num_pos || 0
-        td= player.num_neg || 0
-        td= Math.round(player.num_pos/(player.num_pos+player.num_neg)*100) || 0
-        td= Math.round(player.num_neg/(player.num_pos+player.num_neg)*100) || 0
+        - var num_pos = player.num_pos || 0;
+        - var num_neg = player.num_neg || 0;
+        td= num_pos
+        td= num_neg
+        td= Math.round(num_pos/(num_pos+num_neg)*100) || 0
+        td= Math.round(num_neg/(num_pos+num_neg)*100) || 0
         //td= JSON.stringify(player);

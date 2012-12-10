@@ -92,6 +92,12 @@ p {
   font-size: 125%;
 }
 
+img.sentiment {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
 /* tables */
 table.tablesorter {
   margin:10px 0pt 15px;
