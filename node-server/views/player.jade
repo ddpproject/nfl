@@ -53,11 +53,13 @@ block content
   if player.tweets
     br
     h3= "Tweets"
-    ul
-      each tweet in player.tweets
-        li
-          if tweet.sentiment == "negative"
-            = "+ " + tweet.Tweet
-          else
-            = "- " + tweet.Tweet
+    each tweet in player.tweets
+        if tweet.sentiment == "negative"
+          p
+            img(src="/static/happy-face.gif", width="25px", style="display:inline-block;vertical-align:top;margin:0;")
+            = " " + tweet.Tweet
+        else
+          p
+            img(src="/static/sad-face.gif", width="25px", style="display:inline-block;vertical-align:top;margin:0;")
+            = " " + tweet.Tweet
 
