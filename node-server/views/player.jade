@@ -21,27 +21,33 @@ block content
   if player["Offensive Line"]
     br
     h3= "Offensive Line"
-    - header2 = ["Year","Team","G","GS"]
+    - header2 = ["Year","G","GS"]
     mixin stats(player["Offensive Line"], header2)
 
   if player["Defensive"]
     br
     h3= "Defensive"
-    - header2 = ["Year","Team","G","Total","Ast","Sck","SFTY","FDef","Int","TDs","Yds","Avg","Lng"]
+    - header2 = ["Year", "G","Total","Ast","Sck","SFTY","FDef","Int","TDs","Yds","Avg","Lng"]
     - header1 = [{colspan: 3}, {colspan: 3, name: "Tackles"}, {colspan: 2}, {colspan: 6, name: "Interceptions"}]
     mixin stats(player["Defensive"], header2, header1)
 
   if player["Receiving"]
     br
     h3= "Receiving"
-    - header2 = ["Year","Team","G"]
+    - header2 = ["Year","G"]
     mixin stats(player["Receiving"], header2)
 
   if player["Rushing"]
     br
     h3= "Rushing"
-    - header2 = ["Year","Team","G"]
+    - header2 = ["Year","G"]
     mixin stats(player["Rushing"], header2)
+    
+  if player["Passing"]
+    br
+    h3= "Passing"
+    - header2 = ["Year", "G",	"Att", "Comp", "Pct",	"Att/G"	, "Yds", "Avg",	"Yds/G",	"TD",	"TD%", "Int",	"Int%",	"Lng",	"20+",	"40+",	"Sck",	"SckY",	"Rate"]
+    mixin stats(player["Passing"], header2)
 
   if player.tweets
     br
