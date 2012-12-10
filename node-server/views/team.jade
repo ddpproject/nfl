@@ -1,17 +1,26 @@
 extends layout
 
 append head
-  script(type='text/javascript')
-    $(document).ready(function() {
-      $("table.tablesorter").tablesorter();
-    });
+  - if (typeof(neg) != "undefined" && neg)
+    script(type='text/javascript')
+      $(document).ready(function() {
+        $("table.tablesorter").tablesorter({sortList: [[6,1]]});
+      });
+  - else if (typeof(pos) != "undefined" && pos)
+    script(type='text/javascript')
+      $(document).ready(function() {
+        $("table.tablesorter").tablesorter({sortList: [[5,1]]});
+      });
+  - else
+    script(type='text/javascript')
+      $(document).ready(function() {
+        $("table.tablesorter").tablesorter({sortList: [[0,0]]});
+      });
 
 block content
   table.tablesorter
     thead
       tr
-        //th= "Rank"
-          span.sort_img
         th= "Name"
           span.sort_img
         th= "Team"
@@ -29,14 +38,15 @@ block content
     - var rank = 1
     each player in results
       tr
-        //td= rank++
         td
           a(href="/player/"+player.id)= player.Name
         td
           a(href="/team/"+player.Team.replace(/ /g,"_"))= player.Team
         td= player.Position
-        td= player.num_pos || 0
-        td= player.num_neg || 0
-        td= Math.round(player.num_pos/(player.num_pos+player.num_neg)*100) || 0
-        td= Math.round(player.num_neg/(player.num_pos+player.num_neg)*100) || 0
+        - var num_pos = player.num_pos || 0;
+        - var num_neg = player.num_neg || 0;
+        td= num_pos
+        td= num_neg
+        td= Math.round(num_pos/(num_pos+num_neg)*100) || 0
+        td= Math.round(num_neg/(num_pos+num_neg)*100) || 0
         //td= JSON.stringify(player);
