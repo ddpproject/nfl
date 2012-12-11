@@ -38,15 +38,27 @@ def main():
     sadness = defaultdict(int)
     for tweet in tweets:
         if tweet['sentiment'] == 'positive':
-            happiness[tweet['Name']] += 1
+            happiness[(tweet['Name'], tweet['Team'])] += 1
         else:
-            sadness[tweet['Name']] += 1
+            sadness[(tweet['Name'], tweet['Team'])] += 1
         tweets_collection.insert(tweet)
 
     for player in happiness:
-        print player_collection.update({"Name":player},{'$set': {"num_pos": happiness[player]}})
+        name, team = player
+        if name == "Chris Clemons" or name == "Chris Harris" or name == "Kyle Williams" or name == "Mike Adams":
+            if name == "Chris Harris" and team == "NFL Free Agents":
+                team = "Jacksonville Jaguars"
+            player_collection.update({"Name":name, "Team":team},{'$set': {"num_pos": happiness[player]}})
+        else:
+            player_collection.update({"Name":name},{'$set': {"num_pos": happiness[player]}})
     for player in sadness:
-        print player_collection.update({"Name":player},{'$set': {"num_neg": sadness[player]}})
+        name, team = player
+        if name == "Chris Clemons" or name == "Chris Harris" or name == "Kyle Williams" or name == "Mike Adams":
+            if name == "Chris Harris" and team == "NFL Free Agents":
+                team = "Jacksonville Jaguars"   
+            player_collection.update({"Name":name, "Team":team},{'$set': {"num_neg": sadness[player]}})
+        else:
+            player_collection.update({"Name":name},{'$set': {"num_neg": sadness[player]}})
 
 
 def read_json(file):
