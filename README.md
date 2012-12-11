@@ -1,34 +1,40 @@
+## NFL Player Stats
+### Files:
 
-filename.py
-crawler
+`NFLStatsParser.py` - Parser for html page of NFL player's stats
 
-players stats are gathered
-once we have the data, it is stored in a .json file
+* Usage: `NFLStatsParser.py von-miller-stats.html`
 
-_________________________________________________
+`NFLStats.py` - Parses every player's NFL stats page and produces a `player_stats.json` file with each player's stats
 
-### nflindexer.py
-Takes input json file and stores each player and his stats and info into mongodb
-each player is assigned a auto_increment id separate from the default id
+* Usage: `NFLStats.py ./Crawls/Complete Player Pages`
 
-- requires mongo and json input file. also needs utils.py and settings.py
+`DataAnalysis.py` - Outputs the number of players for each position using the data in `player_stats.json`
 
-ex. `python nflindexer.py file.json`
+* Usage: `DataAnalysis.py`
 
-### playerRanker.py
-Takes info from mongodb built from nflindexer.py and assigns each player a value based on stats. 
+`nflindexer.py` - Puts each player's stats from `player_stats.json` into [mongodb](http://www.mongodb.org/)
 
-This value is deduced from a custom built algorithm specific to each positions that multiplies each stat by a factor and adds it all together. This value is added to each player's info and every player will be put into a new database based on position. Currently at the end of each build method there is a function that prints everything in the database in decending order starting with the highest ranked player of that position. This is for demonstration only and will be altered later.
+* Usage: `nflindexer.py player_stats.json`
 
-- requires nflindexer.py to be run first and to keep the mongodb constant
+`playerRanker.py` - Calculates a score for each player based on their stats in the mongodb
 
-# Server
+* Usage: `playerRanker.py`
+
+* This value is deduced from a custom built algorithm specific to each positions that multiplies each stat by a factor and adds it all together. This value is added to each player's info and every player will be put into a new database based on position. Currently at the end of each build method there is a function that prints everything in the database in decending order starting with the highest ranked player of that position. This is for demonstration only and will be altered later.
+
+## NFL Player Tweets
+### Files:
+
+`NFLTweetsParser.py` - Parser for html page of NFL player's tweets
+
+`NFLTweets.py` - Parses every (current and retired) player's tweets pages and produces a `cur_player_tweets.json` file for current player's tweets and a `player_tweets.json` for every (current and retired) player's tweets
+
+## Server
 Requires: [node.js](http://nodejs.org/)
-
-This will install the dependencies and start the webserver on [http://localhost:8000/](http://localhost:8000/)
 
 ``` bash
 cd node-server
-npm install #install dependencies
-node serve.js #run server
+npm install    # install dependencies
+node serve.js  # run webserver on http://localhost:8000/
 ```
