@@ -32,7 +32,7 @@ def filter_classes(tweets):
     for tweet in tweets:
         tweet_class = None
         # sometimes html gets into the emoticons
-        text = tweet['Tweet'].replace('&lt;','<').replace('&gt;','>').lower()
+        text = tweet['Text'].replace('&lt;','<').replace('&gt;','>').lower()
         for clas,smilies in emoticons.iteritems():
             if any(smily in text for smily in smilies):
                 if tweet_class:

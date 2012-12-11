@@ -44,13 +44,13 @@ class SentimentAnalyzer(object):
         """
         for label in filtered_tweets:
             for tweet in filtered_tweets[label]:
-                vect = dict(Counter(tokenize(tweet["Tweet"])))
+                vect = dict(Counter(tokenize(tweet["Text"])))
                 self.vects.append(vect)
                 self.vect_class.append(label)
 
     
     def classify(self, k, tweet):
-        vect = dict(Counter(tokenize(tweet["Tweet"])))
+        vect = dict(Counter(tokenize(tweet["Text"])))
         vect_dists = [self._dist(vect, n) for n in self.vects]
         knn = heapq.nsmallest(k, enumerate(vect_dists), key=lambda n: n[1])
         # print knn

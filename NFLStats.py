@@ -17,4 +17,4 @@ if __name__ == '__main__':
     if dir:
         main(dir)
     else:
-        print "Usage: python NFLStats.py ./Crawls/Complete Player Pages"
+        print "Usage: NFLStats.py ./Crawls/Complete Player Pages"

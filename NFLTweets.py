@@ -28,7 +28,10 @@ def main(dir):
     tweetsfile.close()
 
 if __name__ == '__main__':
-    dir = sys.argv[1]
+    if len(sys.argv) == 2:
+        dir = sys.argv[1]
+    else:
+        dir = "./Crawls/Complete Tweet Crawl"
     if dir:
         main(dir)
     else:

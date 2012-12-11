@@ -11,6 +11,7 @@ app.configure(function() {
   app.use('/static', express.static(__dirname + '/static'));
 
   app.set("db uri", 'mongodb://localhost/nfl');
+  app.set("port", 8000);
 });
 
 var mongo = require('mongoq');
@@ -94,4 +95,5 @@ app.get('/player/:player', function(req, res) {
 });
 
 
-app.listen(8000);
+app.listen(app.get("port"));
+console.log("Webserver started on port " + app.get("port"));
