@@ -34,13 +34,13 @@ block content
   if player["Receiving"]
     br
     h3= "Receiving"
-    - header2 = ["Year","G"]
+    - header2 = ["Year","G", "Rec",	"Yds",	"Avg",	"Yds/G",	"Lng",	"TD",	"20+",	"40+",	"1st",	"FUM"]
     mixin stats(player["Receiving"], header2)
 
   if player["Rushing"]
     br
     h3= "Rushing"
-    - header2 = ["Year","G"]
+    - header2 = ["Year", "G", "Att",	"Att/G",	"Yds",	"Avg",	"Yds/G",	"TD",	"Lng",	"1st",	"1st%",	"20+",	"40+",	"FUM"]
     mixin stats(player["Rushing"], header2)
     
   if player["Passing"]
@@ -49,6 +49,37 @@ block content
     - header2 = ["Year", "G",	"Att", "Comp", "Pct",	"Att/G"	, "Yds", "Avg",	"Yds/G",	"TD",	"TD%", "Int",	"Int%",	"Lng",	"20+",	"40+",	"Sck",	"SckY",	"Rate"]
     mixin stats(player["Passing"], header2)
 
+  if player["Punt Return"]    
+    br
+    h3= "Punt Return"
+    - header2 = ["Year", "G", "Ret",	"RetY",	"Avg",	"Lng",	"TD",	"20+",	"40+",	"FC",	"FUM"]
+    mixin stats(player["Punt Return"], header2)
+    
+  if player["Kick Return"]
+    br
+    h3= "Kick Return"
+    - header2 = ["Year",	"G",	"Ret",	"Yds",	"Avg",	"Lng",	"TD",	"20+",	"40+",	"FC",	"FUM"]
+    mixin stats(player["Kick Return"], header2)
+  
+  if player["Field Goal Kickers"]
+    br
+    h3= "Field Goal Kickers"
+    - header2 = ["Year", "G", "Blk",	"Lng",	"FGM",	"FG Att",	"Pct",	"M",	"Att",	"Pct",	"M",	"Att",	"Pct",	"M",	"Att",	"Pct",	"M",	"Att",	"Pct",	"XP Att",	"XPM",	"Pct",	"Blk"]
+    - header1 = [{colspan: 2}, {colspan: 5, name: "Overall FGs"}, {colspan: 3, name: "20-29 Yards"}, {colspan: 3, name: "30-39 Yards"}, {colspan: 3, name: "40-49 Yards"}, {colspan: 3, name: "50+ Yards"}, {colspan: 4, name: "PAT"}]
+    mixin stats(player["Field Goal Kickers"], header2, header1)
+    
+  if player["Punting Stats"]
+    br
+    h3= "Punting Stats"
+    - header2 = ["Year",	"G",	"Punts",	"Yds",	"Net Yds",	"Lng",	"Avg",	"Net Avg",	"Blk",	"OOB",	"Dn",	"IN 20",	"TB",	"FC",	"Ret",	"RetY",	"TD"]
+    mixin stats(player["Punting Stats"], header2)
+    
+  if player["Kickoff Stats"]
+    br
+    h3= "Kickoff Stats"
+    - header2 = ["Year",	"G",	"KO",	"Yds",	"OOB",	"Avg",	"TB",	"Pct",	"Ret", "Avg",	"TD",	"OSK",	"OSKR"]
+    mixin stats(player["Kickoff Stats"], header2)
+    
   if player.tweets
     br
     h3= "Tweets"
