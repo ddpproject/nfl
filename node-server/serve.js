@@ -25,21 +25,23 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/negative', function(req, res) {
-  db.collection('players').find({num_neg:{$gt:0}}).sort({'num_neg': -1}).toArray(function(err, results) {
+  db.collection('players').find({ $or: [{num_pos: {$gt:0}}, {num_neg: {$gt:0}}] }).sort({'num_neg': -1}).toArray(function(err, results) {
     if (err) {
+      console.log(err);
       res.redirect('/404');
     } else {
-      res.render('team.jade', {results: results});
+      res.render('team.jade', {results: results, neg: true});
     }
   });
 });
 
 app.get('/positive', function(req, res) {
-  db.collection('players').find({num_pos:{$gt:0}}).sort({'num_pos': -1}).toArray(function(err, results) {
+  db.collection('players').find({ $or: [{num_pos: {$gt:0}}, {num_neg: {$gt:0}}] }).sort({'num_pos': -1}).toArray(function(err, results) {
     if (err) {
+      console.log(err);
       res.redirect('/404');
     } else {
-      res.render('team.jade', {results: results});
+      res.render('team.jade', {results: results, pos: true});
     }
   });
 });

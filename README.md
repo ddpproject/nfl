@@ -1,6 +1,4 @@
-Our project is split into two parts, this part focuses on the stats portion.
 
-------------***** finish *****----------
 filename.py
 crawler
 
@@ -23,3 +21,14 @@ Takes info from mongodb built from nflindexer.py and assigns each player a value
 This value is deduced from a custom built algorithm specific to each positions that multiplies each stat by a factor and adds it all together. This value is added to each player's info and every player will be put into a new database based on position. Currently at the end of each build method there is a function that prints everything in the database in decending order starting with the highest ranked player of that position. This is for demonstration only and will be altered later.
 
 - requires nflindexer.py to be run first and to keep the mongodb constant
+
+# Server
+Requires: [node.js](http://nodejs.org/)
+
+This will install the dependencies and start the webserver on [http://localhost:8000/](http://localhost:8000/)
+
+``` bash
+cd node-server
+npm install #install dependencies
+node serve.js #run server
+```
