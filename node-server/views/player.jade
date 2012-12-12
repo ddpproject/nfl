@@ -87,10 +87,10 @@ block content
     each tweet in player.tweets
         if tweet.sentiment == "negative"
           p
-            img.sentiment(src="/static/happy-face.gif", width="25px")
+            img.sentiment(src="/static/sad-face.gif", width="25px")
             = " " + tweet.Text
         else
           p
-            img.sentiment(src="/static/sad-face.gif", width="25px")
+            img.sentiment(src="/static/happy-face.gif", width="25px")
             = " " + tweet.Text
 

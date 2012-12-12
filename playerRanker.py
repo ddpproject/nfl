@@ -8,7 +8,6 @@ def sortQBs():
     
     rankedQB = db['QB']
     rankedQB.drop()
-    rankedQB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'QB'} ):
         if "Passing" in each:
@@ -42,7 +41,6 @@ def sortRBs():
     
     rankedRB = db['RB']
     rankedRB.drop()
-    rankedRB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'RB'} ):
         if "Rushing" in each:
@@ -88,7 +86,6 @@ def sortTEs():
     
     rankedTE = db['TE']
     rankedTE.drop()
-    rankedTE.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'TE'} ):
         if "Receiving" in each:
@@ -113,7 +110,6 @@ def sortWRs():
     
     rankedWR = db['WR']
     rankedWR.drop()
-    rankedWR.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find( {"Position" : 'WR'} ):
         if "Receiving" in each:
@@ -153,7 +149,6 @@ def sortDBs():
     
     rankedDB = db['DB']
     rankedDB.drop()
-    rankedDB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'FS'} , {"Position" : 'SS'} , {"Position" : 'CB'} , {"Position" : 'DB'} , {"Position" : 'SAF'} ] } ):
         if "Defensive" in each:
@@ -202,7 +197,6 @@ def sortLBs():
     
     rankedLB = db['LB']
     rankedLB.drop()
-    rankedLB.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'LB'} , {"Position" : 'OLB'} , {"Position" : 'MLB'} , {"Position" : 'ILB'}]}):
         if "Defensive" in each:
@@ -236,7 +230,6 @@ def sortDLs():
     
     rankedDL = db['DL']
     rankedDL.drop()
-    rankedDL.ensure_index([('Score',pymongo.ASCENDING)])
 
     for each in player_collection.find({ "$or" : [ {"Position" : 'NT'} , {"Position" : 'DT'} , {"Position" : 'DE'}]}):
         if "Defensive" in each:
@@ -264,6 +257,53 @@ def sortDLs():
         print each['Name']
         print each['Score']
 
+def sortKs():
+    db = utils.connect_db('nfl', remove_existing = False)
+    player_collection = db['players']
+    
+    rankedK = db['K']
+    rankedK.drop()
+
+    for each in player_collection.find( {"Position" : 'K'} ):
+        if "Field Goal Kickers" in each:
+            extraPointAttempt = int(each['Field Goal Kickers']['XP Att'])
+            extraPointMade = int(each['Field Goal Kickers']['XPM'])
+            fgAttempt = int(each['Field Goal Kickers']['FG Att'])
+            fgMade = int(each['Field Goal Kickers']['FGM'])
+            kickingTotal = (float(extraPointMade)*1000/(extraPointAttempt))+ (float(fgMade)*1000/(fgAttempt))
+        else:
+            kickingTotal = 0
+        
+        each['Score'] = kickingTotal
+        rankedK.insert(each)
+
+    for each in rankedK.find().sort('Score',-1):
+        print each['Name']
+        print each['Score']
+
+def sortPs():
+    db = utils.connect_db('nfl', remove_existing = False)
+    player_collection = db['players']
+    
+    rankedP = db['P']
+    rankedP.drop()
+
+    for each in player_collection.find( {"Position" : 'P'} ):
+        if "Punting Stats" in each:
+            netAvg = float(each['Punting Stats']['Net Avg'])
+            puntingAvg = float(each['Punting Stats']['Avg'])
+            inside20 = int(each['Punting Stats']['IN 20'])
+            puntingTotal = (netAvg * 10) + (puntingAvg * 10) + (inside20 * 10)
+        else:
+            puntingTotal = 0
+        
+        each['Score'] = puntingTotal
+        rankedP.insert(each)
+
+    for each in rankedP.find().sort('Score',-1):
+        print each['Name']
+        print each['Score']
+
 if __name__=="__main__":
     sortQBs()
     sortRBs()
@@ -272,3 +312,5 @@ if __name__=="__main__":
     sortDBs()
     sortLBs()
     sortDLs()
+    sortKs()
+    sortPs()
